@@ -27,7 +27,7 @@ int main(int argc, char** argv) {
     if (dir.back() != '/' && dir.back() != '\\') dir += '\\'; // insert a trailing backslash to file dir if necessary
 
     int w = 0, h = 0;
-    const int ch = 3;
+    const int ch = 4;
     std::vector<unsigned char*> imgs;
     for (int frame_idx = 0;; frame_idx++) {
         std::string file = dir + get_filename(frame_idx);
