@@ -20,8 +20,8 @@ std::string get_filename(int idx) {
 }
 
 int main(int argc, char** argv) {
-    if (argc != 2) {
-        error("usage: " + (std::string)argv[0] + " <dir>");
+    if (argc != 2 && argc != 3) {
+        error("usage: " + (std::string)argv[0] + " <dir>\nOR " + (std::string)argv[0] + " <input dir> <outfile name>");
     }
     std::string dir = argv[1];
     if (dir.back() != '/' && dir.back() != '\\') dir += '\\'; // insert a trailing backslash to file dir if necessary
@@ -55,8 +55,8 @@ int main(int argc, char** argv) {
         copy_dst += frame_bytes;
     }
 
-    const char* outfile = "out.png";
-    stbi_write_png(outfile, w, h * imgs.size(), ch, out, w*ch);
+    std::string outfile = argc == 3 ? argv[2] : "out.png";
+    stbi_write_png(outfile.c_str(), w, h * imgs.size(), ch, out, w*ch);
     free(out);
     return 0;
 }
